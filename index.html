@@ -1,10 +1,78 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SlimeySnufs</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <h1>Welcome to My Page</h1>
+
+<!-- SVG filter -->
+<svg width="0" height="0" style="position:absolute">
+    <defs>
+    <filter id="wobble">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="5" result="noise">
+        <animate attributeName="seed"
+                from="0" to="100"
+                dur="30s"
+                repeatCount="indefinite" />
+    </feTurbulence>
+
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale"
+                values="5;10;5"
+                dur="5s"
+                repeatCount="indefinite" />
+        </feDisplacementMap>
+    </filter>
+    </defs>
+</svg>
+
+<div id="robloxFrame" class="glass" style="left: 3cap; top: 60px;">
+    <div class="bar">
+    <div class="title">Roblox Experience</div>
+    <div class="dots">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    </div>
+    <div class="content">
+    Developing on Roblox since <b>2017</b>.<br>
+    <b>8 years</b> of Lua(u) experience <br>
+    <b>2-3 years</b> of Blender experience<br>
+    <b>1 year</b> of Github-Rojo Oriented workflow <br>
+    </div>
+</div>
+
+<div id="aboutMeFrame" class="glass" style="left: 450px; top: -10px;">
+    <div class="bar">
+    <div class="title">About Me</div>
+    <div class="dots">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    </div>
+    <div class="content">
+    Passion for Game Development <br>
+    Interested in Backend Systems <br>
+    Still a Student <br>
+
+    </div>
+</div>
+
+<div id="howToReachMe" class="glass" style="left: 600px; top: 250px;">
+    <div class="bar">
+    <div class="title">Contact Me</div>
+    <div class="dots">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+    </div>
+    <div class="content">
+    Most active on <b> Discord </b> (SlimeySnufss) <br>
+    Business Email: <i>contact@slimeysnufs.dev</i>
+    </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+
 </body>
 </html>

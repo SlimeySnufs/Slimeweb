@@ -1,0 +1,67 @@
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.10);
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --radius: 24px;
+}
+
+/* Pretty background so the glass blur shows */
+body {
+  margin: 0;
+  height: 100svh;
+  background: radial-gradient(1200px 800px at 10% 10%, #8ec5ff 0%, transparent 60%),
+              radial-gradient(900px 900px at 90% 20%, #1645e2 0%, transparent 60%),
+              radial-gradient(700px 700px at 30% 90%, #6e49f1 0%, transparent 60%),
+              #0f1222;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+/* The “liquid glass” frame */
+.glass {
+  position: absolute;
+  width: 380px;
+  height: 260px;
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  filter: url(#wobble); /* <- liquid wobble */
+  cursor: grab;
+  will-change: transform, left, top;
+}
+.glass:active { cursor: grabbing; }
+
+/* Header bar */
+.bar {
+  height: 42px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 0 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.18);
+}
+.title {
+  font: 600 14px/1.2 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: .2px;
+}
+.dots {
+  display: flex; gap: 8px;
+}
+.dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.12) inset;
+}
+
+.content {
+  padding: 14px;
+  color: rgba(255,255,255,0.85);
+  font: 14px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
