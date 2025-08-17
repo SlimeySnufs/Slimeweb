@@ -1,38 +1,53 @@
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.10);
-  --glass-border: rgba(255, 255, 255, 0.35);
+  --glass-bg: rgba(255,255,255,0.10);
+  --glass-border: rgba(255,255,255,0.35);
   --radius: 24px;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Font fallback & mobile-safe */
 @font-face {
   font-family: "Poppins";
-  src: url("/assets/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url("/assets/fonts/Poppins-Bold.woff2") format("woff2"),
+       url("/assets/fonts/Poppins-Bold.woff") format("woff"),
+       url("/assets/fonts/Poppins-Bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
-
-/* Pretty background so the glass blur shows */
+/* Background */
 html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
   height: 100%;
+  overflow: hidden;
+  
+  /* Ensure gradient fills the viewport consistently */
   background: linear-gradient(135deg, #38acfa, #1192e9, #1657cf);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden; /* prevent scrollbars */
+  background-size: cover;     /* fills entire area */
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* prevents shifting on resize/scroll */
+  font-family: "Poppins", sans-serif;
+
+  /* remove flex centering for the body itself */
+  display: block;
 }
 
-/* The “liquid glass” frame */
+/* Glass frames */
 .glass {
   position: absolute;
-  width: 40vw;              /* 40% of viewport width */
-  max-width: 500px;         /* cap so it doesn’t get too huge */
-  min-width: 250px;         /* don’t let it get too tiny */
-  height: 30vh;             /* scale by viewport height */
-  max-height: 400px;
-  min-height: 200px;
+  width: 400px;            /* fixed “default” width */
+  max-width: 45vw;         /* won’t get too huge on very wide screens */
+  min-width: 250px;        /* won’t get too small on narrow screens */
+  height: 250px;           /* fixed “default” height */
+  max-height: 40vh;        /* won’t get too tall */
+  min-height: 200px;       /* won’t get too tiny */
   
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.15);
@@ -42,62 +57,58 @@ html, body {
   filter: url(#wobble);
   cursor: move;
   box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: width 0.3s ease, height 0.3s ease; /* smooth resize */
 }
+
 .glass:active { cursor: grabbing; }
 
-/* Header bar */
 .bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.8em;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.1);
   font-size: 1.1em;
   font-weight: bold;
 }
+
 .title {
   font: 600 14px/1.2 Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  font-size: clamp(12px, 3vw, 16px);
   color: rgba(255,255,255,0.9);
-  letter-spacing: .2px;
-}
-.dots {
-  display: flex;
-  gap: 0.4em;
-}
-.dot {
-  width: 0.7em;
-  height: 0.7em;
-  background: rgba(255,255,255,0.6);
-  border-radius: 50%;
+  letter-spacing: 0.2px;
 }
 
-.content {
-  padding: 1em;
-  font-family: "Poppins", sans-serif;
-  font-size: 0.75em;
-  color: #fff;
-}
+.dots { display: flex; gap: 0.4em; }
+.dot { width: 0.7em; height: 0.7em; background: rgba(255,255,255,0.6); border-radius: 50%; }
 
+.content { padding: 1em; font-size: 0.75em; color: #fff; font-size: clamp(10px, 1.75vw, 14px); }
+
+/* Score */
 #score {
   position: fixed;
-  font: 600 14px/1.2 Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial;
   top: 10px;
   left: 10px;
   font-size: 1.2rem;
-  color: white;
+  color: #fff;
   z-index: 1000;
-  font-family: sans-serif;
 }
 
+/* Clicker target */
 #target {
   position: absolute;
   width: 80px;
   height: 80px;
   cursor: pointer;
   user-select: none;
-  transition: left 0.3s ease, top 0.3s ease; /* smooth movement */
   z-index: 999;
 
-  /* Shadow that follows the image shape */
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  /* Smooth movement */
+  transition: left 0.4s ease, top 0.4s ease;
+
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+  -webkit-filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+
+  -webkit-user-drag: none;  /* Safari/Chrome */
+  user-select: none;         /* prevents text selection */
 }

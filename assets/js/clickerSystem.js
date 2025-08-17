@@ -3,27 +3,34 @@ const scoreEl = document.getElementById("score");
 let score = 0;
 
 function moveTarget() {
-  const padding = 20; // keep away from edges
-  const maxX = window.innerWidth - target.offsetWidth - padding;
-  const maxY = window.innerHeight - target.offsetHeight - padding;
+  const padding = 10;
 
-  const x = Math.random() * maxX + padding;
-  const y = Math.random() * maxY + padding;
+  // Get actual size
+  const rect = target.getBoundingClientRect();
+  const targetWidth = rect.width;
+  const targetHeight = rect.height;
 
-  target.style.left = x + "px";
-  target.style.top = y + "px";
+  // viewport bounds
+  const maxX = window.innerWidth - targetWidth - padding;
+  const maxY = window.innerHeight - targetHeight - padding;
+
+  const x = Math.random() * (maxX - padding) + padding;
+  const y = Math.random() * (maxY - padding) + padding;
+
+  target.style.left = `${x}px`;
+  target.style.top = `${y}px`;
 }
 
-target.addEventListener("click", () => {
+
+const addScore = e => {
+  e.preventDefault();
   score++;
-  scoreEl.textContent = "Score: " + score;
+  scoreEl.textContent = `Score: ${score}`;
   moveTarget();
-});
+};
 
-console.log("Target found?", target);
+target.addEventListener("click", addScore);
+target.addEventListener("touchstart", addScore, {passive:false});
 
-// start at random position
 moveTarget();
-
-// reposition if screen resizes
 window.addEventListener("resize", moveTarget);
