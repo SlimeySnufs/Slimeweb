@@ -1,4 +1,6 @@
+// assets/js/main.js
 document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("container");
   const frames = document.querySelectorAll(".glass");
   let highestZ = 10;
   let activeFrame = null;
@@ -8,12 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let targetY = 0;
   let isDragging = false;
 
-  // Animate lerp
+  // Smooth lerp animation
   function animate() {
     if (activeFrame) {
       const rect = activeFrame.getBoundingClientRect();
-      const currentX = rect.left + window.scrollX;
-      const currentY = rect.top + window.scrollY;
+      const currentX = rect.left - container.getBoundingClientRect().left;
+      const currentY = rect.top - container.getBoundingClientRect().top;
 
       const lerpFactor = 0.2;
       const newX = currentX + (targetX - currentX) * lerpFactor;
@@ -33,42 +35,55 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       isDragging = true;
       activeFrame = frame;
+
       highestZ += 1;
       frame.style.zIndex = highestZ;
 
-      let clientX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
-      let clientY = e.type.startsWith("touch") ? e.touches[0].clientY : e.clientY;
+      const clientX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type.startsWith("touch") ? e.touches[0].clientY : e.clientY;
 
       const rect = frame.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+
       offsetX = clientX - rect.left;
       offsetY = clientY - rect.top;
-      targetX = rect.left + window.scrollX;
-      targetY = rect.top + window.scrollY;
+
+      targetX = rect.left - containerRect.left;
+      targetY = rect.top - containerRect.top;
     };
 
     const dragMove = e => {
-      if (!isDragging || !activeFrame) return;
-      let clientX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
-      let clientY = e.type.startsWith("touch") ? e.touches[0].clientY : e.clientY;
+      if (!isDragging || activeFrame !== frame) return;
 
-      targetX = clientX - offsetX;
-      targetY = clientY - offsetY;
+      const clientX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type.startsWith("touch") ? e.touches[0].clientY : e.clientY;
 
-      // clamp to viewport
-      targetX = Math.max(0, Math.min(targetX, window.innerWidth - frame.offsetWidth));
-      targetY = Math.max(0, Math.min(targetY, window.innerHeight - frame.offsetHeight));
+      const containerRect = container.getBoundingClientRect();
+
+      targetX = clientX - containerRect.left - offsetX;
+      targetY = clientY - containerRect.top - offsetY;
+
+      // Clamp to container
+      targetX = Math.max(0, Math.min(targetX, container.clientWidth - frame.offsetWidth));
+      targetY = Math.max(0, Math.min(targetY, container.clientHeight - frame.offsetHeight));
     };
 
     const endDrag = () => {
-      isDragging = false;
-      activeFrame = null;
+      if (activeFrame === frame) {
+        isDragging = false;
+        activeFrame = null;
+      }
     };
 
+    // Mouse events
     bar.addEventListener("mousedown", startDrag);
-    bar.addEventListener("touchstart", startDrag, {passive:false});
     window.addEventListener("mousemove", dragMove);
-    window.addEventListener("touchmove", dragMove, {passive:false});
     window.addEventListener("mouseup", endDrag);
+
+    // Touch events
+    bar.addEventListener("touchstart", startDrag, {passive: false});
+    window.addEventListener("touchmove", dragMove, {passive: false});
     window.addEventListener("touchend", endDrag);
+    window.addEventListener("touchcancel", endDrag);
   });
 });

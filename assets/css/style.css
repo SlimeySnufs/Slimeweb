@@ -39,13 +39,20 @@ html, body {
   display: block;
 }
 
+#container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* prevent dragging outside */
+}
+
 /* Glass frames */
 .glass {
   position: absolute;
-  width: 400px;            /* fixed “default” width */
+  width: 80vw;            /* fixed “default” width */
   max-width: 45vw;         /* won’t get too huge on very wide screens */
-  min-width: 250px;        /* won’t get too small on narrow screens */
-  height: 250px;           /* fixed “default” height */
+  min-width: 200px;        /* won’t get too small on narrow screens */
+  height: 40vw;           /* fixed “default” height */
   max-height: 40vh;        /* won’t get too tall */
   min-height: 200px;       /* won’t get too tiny */
   
@@ -74,7 +81,7 @@ html, body {
 
 .title {
   font: 600 14px/1.2 Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  font-size: clamp(12px, 3vw, 16px);
+  font-size: clamp(12px, 10vw, 80px);
   color: rgba(255,255,255,0.9);
   letter-spacing: 0.2px;
 }
@@ -82,14 +89,14 @@ html, body {
 .dots { display: flex; gap: 0.4em; }
 .dot { width: 0.7em; height: 0.7em; background: rgba(255,255,255,0.6); border-radius: 50%; }
 
-.content { padding: 1em; font-size: 0.75em; color: #fff; font-size: clamp(10px, 1.75vw, 14px); }
+.content { padding: 1em; font-size: 20em; color: #fff; font-size: clamp(10px, 1.75vw, 40px); }
 
 /* Score */
 #score {
   position: fixed;
   top: 10px;
   left: 10px;
-  font-size: 1.2rem;
+  font-size: 4rem;
   color: #fff;
   z-index: 1000;
 }
@@ -97,8 +104,8 @@ html, body {
 /* Clicker target */
 #target {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 9vw;
+  height: 9vw;
   cursor: pointer;
   user-select: none;
   z-index: 999;
