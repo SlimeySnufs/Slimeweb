@@ -22,6 +22,8 @@
 
 /* Background */
 html, body {
+  cursor: url("/assets/Images/Cursors/MainCursor.png"), default;       /* default cursor */                
+
   margin: 0;
   padding: 0;
   width: 100%;
@@ -48,6 +50,7 @@ html, body {
 
 /* Glass frames */
 .glass {
+
   position: absolute;
   width: 80vw;            /* fixed “default” width */
   max-width: 45vw;         /* won’t get too huge on very wide screens */
@@ -62,12 +65,20 @@ html, body {
   border: 1px solid rgba(255,255,255,0.3);
   overflow: hidden;
   filter: url(#wobble);
-  cursor: move;
   box-shadow: 0 8px 25px rgba(0,0,0,0.3);
   transition: width 0.3s ease, height 0.3s ease; /* smooth resize */
 }
 
+.glass:active { 
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 .topbarglass {
+  
   position: fixed;
   top: 20px;
   left: 20px;
@@ -84,6 +95,9 @@ html, body {
 }
 
 .topbaritem {
+
+  cursor: url("/assets/Images/Cursors/ButtonClick.png"), pointer; /* button click cursor */
+
   display: inline-block;
   padding: 16px 16px;
   backdrop-filter: blur(20px);
@@ -93,7 +107,6 @@ html, body {
   top: 50%;
   transform: translateY(-100%);
   border: 1px solid rgba(255,255,255,0.3);
-  cursor: pointer;
   color: rgba(255,255,255,0.9);
   font: 500 12px/1.2 Poppins, system-ui;
   transition: background 0.2s ease;
@@ -102,6 +115,9 @@ html, body {
 }
 
 .inModuleItem {
+
+  cursor: url("/assets/Images/Cursors/ButtonClick.png"), pointer; /* button click cursor */
+
   display: inline-block;
   padding: 72px 96px;  /* Tripled from 24px 32px */
   backdrop-filter: blur(20px);
@@ -112,7 +128,6 @@ html, body {
   left: 50%;
   transform: translate(-50%, -10%);
   border: 1px solid rgba(255,255,255,0.3);
-  cursor: pointer;
   color: rgba(255,255,255,0.9);
   font: 500 60px/1.2 Poppins, system-ui;  /* Tripled from 16px */
   transition: background 0.2s ease;
@@ -123,14 +138,22 @@ html, body {
 .topbaritem:hover {
   background: rgba(255, 255, 255, 0.25);
 }
-
 .topbaritem:active {
+  cursor: url("/assets/Images/Cursors/ButtonClick.png"), grabbing;
+  background: rgba(255, 255, 255, 0.1);
+}
+.inModuleItem:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+.inModuleItem:active {
+  cursor: url("/assets/Images/Cursors/ButtonClick.png"), grabbing;
   background: rgba(255, 255, 255, 0.1);
 }
 
-.glass:active { cursor: grabbing; }
-
 .bar {
+
+  cursor: url("/assets/Images/Cursors/MovingCursor.png"), grab;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -138,6 +161,10 @@ html, body {
   background: rgba(255,255,255,0.1);
   font-size: 1.1em;
   font-weight: bold;
+}
+
+.bar:active {
+  cursor: url("/assets/Images/Cursors/MovingCursor.png"), grabbing;
 }
 
 .title {
@@ -160,14 +187,17 @@ html, body {
   font-size: 4rem;
   color: #fff;
   z-index: 1000;
+  text-shadow: 0 12px 25px rgba(0,0,0,0.3);
 }
 
 /* Clicker target */
 #target {
+
+  cursor: url("/assets/Images/Cursors/ButtonClick.png"), auto;
+
   position: absolute;
   width: 9vw;
   height: 9vw;
-  cursor: pointer;
   user-select: none;
   z-index: 999;
 
