@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SlimeySnufs</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/Images/Slimey.png">
+</head>
+
+<svg width="0" height="0" style="position:absolute">
+    <defs>
+    <filter id="wobble">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="5" result="noise">
+        <animate attributeName="seed"
+                from="0" to="100"
+                dur="30s"
+                repeatCount="indefinite" />
+    </feTurbulence>
+
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale"
+                values="5;10;5"
+                dur="5s"
+                repeatCount="indefinite" />
+        </feDisplacementMap>
+    </filter>
+    </defs>
+</svg>
+
+<body>
+    <div id="topbarcontainer" class="topbarglass">
+        <div id="BackButton" class="topbaritem" style="left: 2vw; top: 10vh;">
+            <div class="title">back</div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/WaveVisual.js"></script>
+<script src="assets/js/MainPage.js"></script>
+
+</body>
+</html>

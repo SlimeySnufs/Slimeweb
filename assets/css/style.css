@@ -67,6 +67,67 @@ html, body {
   transition: width 0.3s ease, height 0.3s ease; /* smooth resize */
 }
 
+.topbarglass {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  height: 150px;
+  
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1.5em;
+  border: 1px solid rgba(255,255,255,0.3);
+  overflow: hidden;
+  filter: url(#wobble);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.topbaritem {
+  display: inline-block;
+  padding: 16px 16px;
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.8em;
+  position: relative;
+  top: 50%;
+  transform: translateY(-100%);
+  border: 1px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  color: rgba(255,255,255,0.9);
+  font: 500 12px/1.2 Poppins, system-ui;
+  transition: background 0.2s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.inModuleItem {
+  display: inline-block;
+  padding: 72px 96px;  /* Tripled from 24px 32px */
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.8em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  border: 1px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  color: rgba(255,255,255,0.9);
+  font: 500 60px/1.2 Poppins, system-ui;  /* Tripled from 16px */
+  transition: background 0.2s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.topbaritem:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.topbaritem:active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .glass:active { cursor: grabbing; }
 
 .bar {
