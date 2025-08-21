@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SlimeySnufs Login Page</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/loginstyle.css">
+    <link rel="icon" type="image/png" href="assets/Images/Slimey.png">
+</head>
+
+<!-- wave effect -->
+<svg width="0" height="0" style="position:absolute">
+    <defs>
+    <filter id="wobble">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="5" result="noise">
+        <animate attributeName="seed"
+                from="0" to="100"
+                dur="30s"
+                repeatCount="indefinite" />
+    </feTurbulence>
+
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale"
+                values="5;10;5"
+                dur="5s"
+                repeatCount="indefinite" />
+        </feDisplacementMap>
+    </filter>
+    </defs>
+</svg>
+
+<body>
+    <!-- Top navigation button -->
+    <button id="mainpage-button">Go to Main Page</button>
+
+    <div id="login-container" class="glass">
+        <h1>Login</h1>
+        <div id="status"></div>
+        <input type="email" id="email" placeholder="Email" />
+
+        <!-- Show password toggle -->
+        <div id="password-container">
+            <input type="password" id="password" placeholder="Password" />
+            <input type="checkbox" id="show-password" title="Show Password"/>
+        </div>
+
+        <button id="login-button">Login</button>
+        <button id="signup-button">Sign Up</button>
+
+        <!-- Text links row -->
+        <div class="links-row">
+            <button id="logout-link">Logout</button>
+            <button id="forgot-pass-link">Forgot Password?</button>
+        </div>
+    </div>
+
+    <script type="module" src="assets/js/login.js"></script>
+</body>
+</html>
