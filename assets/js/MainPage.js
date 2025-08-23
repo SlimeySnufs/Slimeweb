@@ -10,7 +10,7 @@ const BackButton = document.getElementById("BackButton");
 const ProfileButton = document.getElementById("ProfileButton");
 
 BackButton?.addEventListener("click", () => {
-    window.location.href = "/sidepage/"; // loads /mainpage/index.html
+    window.location.href = "/sidepage/"; // loads /sidepage/index.html
 });
 
 ProfileButton?.addEventListener("click", () => {
