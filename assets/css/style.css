@@ -78,73 +78,169 @@ html, body {
 }
 
 .topbarglass {
-  
   position: fixed;
   top: 20px;
   left: 20px;
   right: 20px;
-  height: 150px;
+  height: clamp(60px, 10vw, 120px); /* responsive height */
+  display: flex;
+  justify-content: space-between;   /* keeps items on left and right */
+  align-items: center;              /* vertical center */
+  padding: 0 1em;
   
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.15);
   border-radius: 1.5em;
   border: 1px solid rgba(255,255,255,0.3);
-  overflow: hidden;
-  filter: url(#wobble);
   box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+
+  filter: url(#wobble);
 }
 
 .topbaritem {
+  cursor: url("/assets/Images/Cursors/ButtonClick.png"), pointer;
 
-  cursor: url("/assets/Images/Cursors/ButtonClick.png"), pointer; /* button click cursor */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  display: inline-block;
-  padding: 16px 16px;
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 0.8em;
-  position: relative;
-  top: 50%;
-  transform: translateY(-100%);
-  border: 1px solid rgba(255,255,255,0.3);
+  width: clamp(100px, 10vw, 200px);
+  height: clamp(40px, 6vw, 100px);
+
+  padding: 0 0.8em; /* horizontal padding for text */
+
+  font-weight: 600;
+  font-size: clamp(12px, 1.5vw, 18px); /* scales with viewport */
   color: rgba(255,255,255,0.9);
-  font: 500 12px/1.2 Poppins, system-ui;
+
+  border-radius: 0.8em;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.15);
   transition: background 0.2s ease;
+
   -webkit-user-drag: none;
   user-select: none;
+
+  /* fix text overflow */
+  overflow: hidden;
+  text-align: center;
+  min-width: 0;       /* important for flex-shrink */
 }
 
-.inModuleItem {
+.topbaritem span {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis; /* optional */
+  white-space: nowrap;
+}
 
-  cursor: url("/assets/Images/Cursors/ButtonClick.png"), pointer; /* button click cursor */
-
-  display: inline-block;
-  padding: 72px 96px;  /* Tripled from 24px 32px */
-  backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 0.8em;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.9);
-  font: 500 60px/1.2 Poppins, system-ui;  /* Tripled from 16px */
-  transition: background 0.2s ease;
-  -webkit-user-drag: none;
-  user-select: none;
+/* Images inside the button */
+.topbaritem img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* scales image to fit without cutting off */
+  display: block;
 }
 
 .topbaritem:hover {
   background: rgba(255, 255, 255, 0.25);
 }
+
 .topbaritem:active {
   cursor: url("/assets/Images/Cursors/ButtonClick.png"), grabbing;
   background: rgba(255, 255, 255, 0.1);
 }
+
+.inModuleItem {
+  cursor: url("/assets/Images/Cursors/ButtonClick.png"), pointer;
+
+  /* Fixed ratio button based on viewport width */
+  width: clamp(180px, 20vw, 500px);
+  height: clamp(150px, 15vw, 180px);
+
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -10%); /* center perfectly */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px; /* inner padding */
+  text-align: center;
+
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0.8em;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.9);
+
+  font: 600 clamp(24px, 5vw, 60px) Poppins, system-ui; /* font scales with button */
+  line-height: 1.1;
+
+  transition: background 0.2s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* Profile button: always square */
+.ProfileButton {
+  width: clamp(60px, 8vw, 100px); /* scales but respects min/max */
+  aspect-ratio: 1 / 1;            /* ensures 1:1 ratio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0.8em;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.BackButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: clamp(120px, 18vw, 240px);  /* slightly wider to accommodate padding */
+  height: clamp(50px, 8vw, 100px);   /* taller */
+  padding: 0.9em 1.2em;              /* increased padding */
+
+  font-weight: 600;
+  font-size: clamp(8px, 3vw, 18px); /* dynamically scales */
+  color: rgba(255,255,255,0.9);
+  
+  border-radius: 0.8em;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.BackButton span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
 .inModuleItem:hover {
   background: rgba(255, 255, 255, 0.25);
 }
+
 .inModuleItem:active {
   cursor: url("/assets/Images/Cursors/ButtonClick.png"), grabbing;
   background: rgba(255, 255, 255, 0.1);

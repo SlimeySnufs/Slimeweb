@@ -105,6 +105,14 @@
     color: #fff;
 }
 
+.topbaritem span {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis; /* optional */
+  white-space: nowrap;
+}
+
 
 /* Scrollbar styling for Webkit browsers (Chrome, Edge, Safari) */
 .games-container::-webkit-scrollbar {
