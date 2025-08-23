@@ -6,6 +6,18 @@ _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
+*.rules
+.env
+*.log
+.DS_Store
+Thumbs.db
+node_modules/
+
+.firebase/
+.firebase-debug.log
+firebase.json
+.firebaserc
+
 
 # Additional Ruby/bundler ignore for when you run: bundle install
 /vendor

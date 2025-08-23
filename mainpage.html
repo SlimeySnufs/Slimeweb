@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>SlimeySnufs</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/mainpage.css">
+    <link rel="icon" type="image/png" href="assets/Images/Slimey.png">
+
+    <link rel="stylesheet" href="assets/css/loginstyle.css">
+</head>
+
+<!-- wave effect -->
+<svg width="0" height="0" style="position:absolute">
+    <defs>
+    <filter id="wobble">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="5" result="noise">
+        <animate attributeName="seed"
+                from="0" to="100"
+                dur="30s"
+                repeatCount="indefinite" />
+    </feTurbulence>
+
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale"
+                values="5;10;5"
+                dur="5s"
+                repeatCount="indefinite" />
+        </feDisplacementMap>
+    </filter>
+    </defs>
+</svg>
+
+<!-- Container for all frames -->
+<body>
+<div id="topbarcontainer" class="topbarglass">
+    <div id="BackButton" class="topbaritem" style="left: 2vw; top: 10vh;">
+        <div class="title">Game</div>
+    </div>
+    <div id="ProfileButton" class="topbaritem" style="left: 84.5vw; top: 8.5vh;">
+        <img src="assets/Images/user.png" alt="Profile" class="image" style="width: 5vh; height: 5vh;">
+    </div>
+</div>
+
+<!-- Main container for all games -->
+<div class="games-container">
+    <h1 class="game-title">My Games</h1>
+
+    <!-- Example game card -->
+    <div class="game-card" data-game-id="CountryRNG">
+        <a href="https://www.roblox.com/games/17153707455/Country-RNG" target="_blank" rel="game-title-link">
+            <div class="game-title">Country RNG</div>
+        </a>
+        <img src="assets/Images/Thumbnails/CountryRngThumbnail.webp" alt="Game Thumbnail" class="game-thumbnail">
+        <div class="game-caption">Visits: 0 | Players: 0 | Like Ratio: 0%</div>
+        <div class="game-description">
+            🎲 Roll for rare countries and flex your massive flags to your friends! <br>
+            🏗️ Upgrade your Luck to get better flags! <br>
+            🚀 Experience cool events when rolling rare things! <br>
+        </div>
+    </div>
+
+    <div class="game-card" data-game-id="DumpsterDivers">
+        <a href="https://www.roblox.com/games/133904667472313/UPDATE-Dumpster-Divers" target="_blank" class="game-title-link">
+        <div class="games-title">Dumpster Divers</div>
+        </a>
+        <img src="assets/Images/Thumbnails/dumpsterdivers.png" alt="Game Thumbnail" class="game-thumbnail">
+        <div class="game-caption">Visits: 0 | Players: 0 | Like Ratio: 0%</div>
+        <div class="game-description">
+            the game all about trash. <br>
+            🗑️ scavenge the dumpsters for rare items <br>
+            💰 sell your items for coins <br>
+            ☄️ recieve mutations on your items through weather and cool dumpsters <br>
+            📖 talk with npcs and progress their storylines <br>
+        </div>
+    </div>
+
+</div>
+
+
+<script type="module" src="assets/js/Firebase/firebase.js"></script>
+<script src="assets/js/MainPage.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+/* Centered, scrollable glass container */
+.games-container {
+    width: 75vw;
+    margin: 2rem auto;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Main title */
+.games-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 1rem;
+
+    cursor: url("/assets/Images/Cursors/ButtonClick.png"), auto;
+}
+
+/* Individual game card */
+.game-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 75%;                 /* centered & relative width */
+    display: flex;
+    flex-direction: column;     /* stack content vertically */
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    /* allow content to grow freely */
+    overflow: visible;
+}
+
+/* Game thumbnail */
+.game-card img, .game-thumbnail {
+    width: auto;                /* natural width */
+    max-width: 100%;            /* never overflow card */
+    height: auto;               /* maintain aspect ratio */
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: contain;        /* show full image */
+}
+
+/* Title */
+.game-card h2 {
+    margin: 10px 0;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+/* Caption / stats */
+.game-card .stats, .game-caption {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: 500;
+    color: #fcfcfc;
+}
+
+/* Description */
+.game-card .description, .game-description {
+    font-size: 1.75rem;
+    color: #ffffff;
+    line-height: 0.85;
+    white-space: pre-line;      /* preserve line breaks from text */
+    text-align: left;
+}
+
+/* Centered, scrollable glass container */
+.games-container {
+    width: 75vw;
+    margin: 2rem auto; /* can be adjusted to add space from topbar */
+    margin-top: 15vh;  /* push it below topbar */
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-height: 80vh;      /* container height */
+    overflow-y: auto;      /* scrollable */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    filter: url(#wobble);
+}
+
+.game-title {
+    cursor: url("/assets/Images/Cursors/ButtonClick.png"), auto;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    color: #fff;
+}
+
+
+/* Scrollbar styling for Webkit browsers (Chrome, Edge, Safari) */
+.games-container::-webkit-scrollbar {
+    width: 12px;            /* width of the scrollbar */
+}
+
+.games-container::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05); /* track background */
+    border-radius: 10px;
+}
+
+.games-container::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);  /* thumb color */
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.05); /* padding around thumb */
+}
+
+.games-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.5);  /* thumb hover */
+}
+
+/* For Firefox */
+.games-container {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.3) rgba(255,255,255,0.05);
+}
