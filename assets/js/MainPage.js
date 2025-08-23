@@ -2,6 +2,7 @@
 const gameUniverseMap = {
     "CountryRNG": "5874949762",
     "DumpsterDivers": "7584831866",
+    "LaunchBrainrot": "8414026933",
     // add more: "CardId": "UniverseId"
 };
 
@@ -9,7 +10,7 @@ const BackButton = document.getElementById("BackButton");
 const ProfileButton = document.getElementById("ProfileButton");
 
 BackButton?.addEventListener("click", () => {
-    window.location.href = "/mainpage/"; // loads /mainpage/index.html
+    window.location.href = "/sidepage/"; // loads /mainpage/index.html
 });
 
 ProfileButton?.addEventListener("click", () => {
