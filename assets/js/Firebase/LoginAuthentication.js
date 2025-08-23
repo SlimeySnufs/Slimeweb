@@ -127,5 +127,5 @@ forgotLink?.addEventListener("click", () => {
 
 // Navigate to main page
 mainpageButton?.addEventListener("click", () => {
-  window.location.href = "mainpage.html";
+  window.location.href = "/mainpage/";
 });

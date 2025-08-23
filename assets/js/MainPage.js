@@ -9,12 +9,12 @@ const BackButton = document.getElementById("BackButton");
 const ProfileButton = document.getElementById("ProfileButton");
 
 BackButton?.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "/sidepage/";           // root folder serves index.html
     window.history.pushState(null, "", window.location.href);
 });
 
 ProfileButton?.addEventListener("click", () => {
-    window.location.href = "loginpage.html";
+    window.location.href = "/loginpage/"; // folder with index.html inside
     window.history.pushState(null, "", window.location.href);
 });
 
@@ -61,5 +61,4 @@ async function updateGameStats() {
     }
 }
 
-window.addEventListener("DOMContentLoaded", updateGameStats);
 window.addEventListener("DOMContentLoaded", updateGameStats);
