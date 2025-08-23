@@ -1,60 +1,48 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+// ============================
+// LoginAuthentication.js
+// ============================
+
+// Import auth from our firebase.js
+import { auth } from "./firebase.js";
 import { 
-  getAuth, 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword, 
-  signOut, 
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
   onAuthStateChanged,
   sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyCTVSoGt3d4QY9OZd3v3tFoZe5trhFeHkw",
-  authDomain: "slimeweb-52397.firebaseapp.com",
-  projectId: "slimeweb-52397",
-  storageBucket: "slimeweb-52397.firebasestorage.app",
-  messagingSenderId: "344893534568",
-  appId: "1:344893534568:web:8b124d5d41805141abe6dd",
-  measurementId: "G-09ZGF6B0R0"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-// Utility: show status message
+// ----------------------------
+// UI Helpers
+// ----------------------------
 function showStatus(msg, isError = false) {
   const statusEl = document.getElementById("status");
   if (!statusEl) return;
   statusEl.textContent = msg;
-  statusEl.style.color = isError ? "#ff4d4d" : "#4dff88"; // red or green
+  statusEl.style.color = isError ? "#ff4d4d" : "#4dff88";
 }
 
-// Centralized error handler
 function handleAuthError(err) {
   console.error(err);
-  switch(err.code) {
+  switch (err.code) {
     case "auth/email-already-in-use":
-      showStatus("Email is already registered.", true);
-      break;
+      showStatus("Email is already registered.", true); break;
     case "auth/invalid-email":
-      showStatus("Invalid email format.", true);
-      break;
+      showStatus("Invalid email format.", true); break;
     case "auth/wrong-password":
-      showStatus("Incorrect password.", true);
-      break;
+      showStatus("Incorrect password.", true); break;
     case "auth/user-not-found":
-      showStatus("No user found with this email.", true);
-      break;
+      showStatus("No user found with this email.", true); break;
     case "auth/too-many-requests":
-      showStatus("Too many login attempts. Try again later.", true);
-      break;
+      showStatus("Too many login attempts. Try again later.", true); break;
     default:
       showStatus("Error: " + err.message, true);
   }
 }
 
-// Sign up
+// ----------------------------
+// Auth Actions
+// ----------------------------
 async function signup(email, password) {
   try {
     const userCred = await createUserWithEmailAndPassword(auth, email, password);
@@ -64,7 +52,6 @@ async function signup(email, password) {
   }
 }
 
-// Log in
 async function login(email, password) {
   try {
     const userCred = await signInWithEmailAndPassword(auth, email, password);
@@ -74,7 +61,6 @@ async function login(email, password) {
   }
 }
 
-// Log out
 async function logout() {
   try {
     await signOut(auth);
@@ -84,7 +70,9 @@ async function logout() {
   }
 }
 
+// ----------------------------
 // Detect login state
+// ----------------------------
 onAuthStateChanged(auth, (user) => {
   if (user) {
     showStatus(`User is logged in: ${user.email}`);
@@ -93,7 +81,9 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// DOM elements
+// ----------------------------
+// DOM Elements
+// ----------------------------
 const signupButton = document.getElementById("signup-button");
 const loginButton = document.getElementById("login-button");
 const logoutLink = document.getElementById("logout-link");
@@ -103,11 +93,13 @@ const passwordInput = document.getElementById("password");
 const mainpageButton = document.getElementById("mainpage-button");
 
 // Show/hide password
-showPassCheckbox.addEventListener("change", () => {
+showPassCheckbox?.addEventListener("change", () => {
   passwordInput.type = showPassCheckbox.checked ? "text" : "password";
 });
 
-// Button hooks
+// ----------------------------
+// Event Listeners
+// ----------------------------
 signupButton?.addEventListener("click", () => {
   const email = document.getElementById("email")?.value;
   const password = document.getElementById("password")?.value;
@@ -133,8 +125,7 @@ forgotLink?.addEventListener("click", () => {
     .catch(err => alert("Error: " + err.message));
 });
 
-// Main page button
+// Navigate to main page
 mainpageButton?.addEventListener("click", () => {
-    window.location.href = "sidepage.html";
-    window.history.pushState(null, "", window.location.href);
+  window.location.href = "mainpage.html";
 });

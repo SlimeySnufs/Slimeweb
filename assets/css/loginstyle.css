@@ -9,6 +9,9 @@ body {
 }
 
 #mainpage-button {
+
+    cursor: url("/assets/Images/Cursors/ButtonClick.png"), auto;
+
     position: absolute;
     top: 50px;
     left: 110px;
@@ -46,6 +49,9 @@ body {
 }
 
 #login-container input {
+
+    cursor: url("/assets/Images/Cursors/ButtonClick.png"), auto;
+
     width: 100%;
     padding: 1.25rem;
     border-radius: 14px;
@@ -75,7 +81,7 @@ body {
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    cursor: pointer;
+    cursor: url("/assets/Images/Cursors/ButtonClick.png"), auto;
     border-radius: 100%;
 }
 
@@ -88,7 +94,7 @@ body {
     transition: 0.2s ease;
     background: rgba(255,255,255,0.2);
     color: white;
-    cursor: pointer;
+    cursor: url("/assets/Images/Cursors/ButtonClick.png"), auto;
 }
 
 #login-container button:hover {
@@ -105,7 +111,7 @@ body {
     background: none;
     border: none;
     color: #ff9999;
-    cursor: pointer;
+    cursor: url("/assets/Images/Cursors/ButtonClick.png"), auto;
     font-size: 1rem;
     text-decoration: underline;
     padding: 3px;
