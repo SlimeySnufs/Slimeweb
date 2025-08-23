@@ -14,7 +14,7 @@ let baseScore = 0;
 let pendingDelta = 0;
 
 // Import Firebase
-import { auth, db } from "./Firebase/firebase.js";
+import { auth, db } from "/assets/js/Firebase/firebase.js";
 import { doc, getDoc, setDoc, updateDoc, increment, onSnapshot } 
   from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 import { onAuthStateChanged } 
