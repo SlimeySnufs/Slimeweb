@@ -139,7 +139,7 @@ function attachNavSave(buttonId, redirectUrl) {
   });
 }
 
-attachNavSave("mainpageBtn", "mainpage.html");
+attachNavSave("mainpageBtn", "/mainpage/");
 
 // Optional: intercept all internal <a> links
 document.addEventListener("click", async (e) => {

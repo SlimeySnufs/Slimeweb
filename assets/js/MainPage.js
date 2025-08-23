@@ -9,15 +9,12 @@ const BackButton = document.getElementById("BackButton");
 const ProfileButton = document.getElementById("ProfileButton");
 
 BackButton?.addEventListener("click", () => {
-    window.location.href = "/sidepage/";           // root folder serves index.html
-    window.history.pushState(null, "", window.location.href);
+    window.location.href = "/mainpage/"; // loads /mainpage/index.html
 });
 
 ProfileButton?.addEventListener("click", () => {
-    window.location.href = "/loginpage/"; // folder with index.html inside
-    window.history.pushState(null, "", window.location.href);
+    window.location.href = "/loginpage/"; // loads /loginpage/index.html
 });
-
 
 // Format numbers with k/m suffix
 function formatNumber(num) {
