@@ -162,7 +162,7 @@ let unsubscribe = null;
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "loginpage.html";
+    window.location.href = "/loginpage/";
     return;
   }
 
